@@ -8,10 +8,15 @@ import toggle_light from '../../assets/night.png'
 import toggle_dark from '../../assets/day.png'
 
 
-const Navbar = () => {
+const Navbar = ({theme, setTheme}) => {
+
+  const toggle_mode = ()=>{
+    theme == 'light' ? setTheme('dark') : setTheme('light');
+  }
+
   return (
     <div className='navbar' >
-      <img src={logo_light} alt='' className='logo' />
+      <img src={theme == 'light' ? logo_light : logo_dark} alt='' className='logo' />
       <ul>
         <li>Home</li>
         <li>Products</li>
@@ -21,9 +26,9 @@ const Navbar = () => {
 
       <div className='search-box'>
         <input type="text" placeholder='Search'/>
-        <img src={search_icon_light} alt="" />
+        <img src={theme == 'light' ? search_icon_light : search_icon_dark} alt="" />
       </div>
-      <img src={toggle_light} alt="" className='toggle-icon'/>
+      <img onClick={()=>{toggle_mode()}} src={toggle_light} alt="" className='toggle-icon'/>
     </div>
   )
 }
